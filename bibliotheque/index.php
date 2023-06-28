@@ -1,31 +1,28 @@
 <?php 
 
+include "Livre.php";
 include "Bibliotheque.php";
-include "./livre.php";
 
-$pdo = new PDO("mysql:host=localhost;dbname=rh_bibliotheque","root","");
+$pdo = new PDO(
+     "mysql:host=localhost;dbname=rh_bibliotheque","root", ""
+);
 
 $stmt = $pdo->prepare("SELECT * FROM livre");
 
 $stmt->execute();
 
-if($stmt->rowCount() != 0){
+if( $stmt->rowCount() != 0 ){
 
      $b1 = new Bibliotheque();
-     $biblio = [];
 
-     while ($resultat = $stmt->fetch()){
-     $livre = new Livres($resultat["titre"], $resultat["auteur"], $resultat["editeur"]);
-     $b1->ajouter($livre);
+     while( $resultat = $stmt->fetch() ){
+          $livre = new Livre($resultat['titre'], $resultat['auteur'], $resultat['editeur']);
+          $b1->ajouter($livre);
      }
-     // var_dump($b1);   
-
-     foreach($b1->getLivres() as $key => $value){
-     }
+  
 }
 
 
-$biblio = []; 
 
 ?>
 <!DOCTYPE html>
@@ -65,9 +62,3 @@ $biblio = [];
      
 </body>
 </html>
-<?php
-
-
-if( !empty($_POST['titre']) ){
-     $livre = new Livres($_POST['titre'], $_POST['auteur'], $_POST['editeur']);
-}

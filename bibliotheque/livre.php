@@ -1,46 +1,44 @@
-<?php
-class livres{
+<?php 
+class Livre{
      private $titre;
      private $auteur;
      private $editeur;
 
      public function __construct($titre, $auteur, $editeur)
      {
-        $this->titre = $titre;
-        $this->auteur = $auteur;
-        $this->editeur = $editeur;
+          $this->titre = $titre;
+          $this->auteur = $auteur;
+          $this->editeur = $editeur;
      }
 
-     //Get
      public function getTitre(){
-     return $this->titre;
-     }
-     public function getAuteur(){
-     return $this->auteur;
-     }
-     public function getEditeur(){
-     return $this->editeur;
+          return $this->titre;
      }
 
-     //Set
+     public function getAuteur(){
+          return $this->auteur;
+     }
+
+     public function getEditeur(){
+          return $this->editeur;
+     }
+
      public function setTitre($titre){
-     return $this->titre;
+          $this->titre = $titre;
      }
+
      public function setAuteur($auteur){
-     return $this->auteur;
+          $this->auteur = $auteur;
      }
+
      public function setEditeur($editeur){
-     return $this->editeur;
+          $this->editeur = $editeur;
      }
 
      public function __toString()
      {
-        return "Titre : " . $this->titre .
-               "Auteur : " . $this->auteur .
-               "Editeur : " . $this->editeur;
+          return "Titre: " . $this->titre . 
+                 " Auteur: " . $this->auteur . 
+                 " Editeur: " . $this->editeur;
      }
-
-     
-
-
 }

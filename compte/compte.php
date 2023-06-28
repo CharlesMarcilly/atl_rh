@@ -51,6 +51,6 @@ class Compte{
 
      public function __toString()
      {
-          return "numéro: " . $this->numero ." titulaire: " . $this->titulaire->prenom ." solde: ".  $this->solde;
+          return "numéero: " . $this->numero ." titulaire: " . $this->titulaire->prenom ." solde: ".  $this->solde;
      }
 }

@@ -8,10 +8,12 @@
      <title>Bibliothèque</title>
 </head>
 <body>
+
      <header class="bg-secondary p-4">
           <a class="btn btn-primary" href="ajouter.php">Ajouter un livre</a>
           <a class="btn btn-primary" href="index.php">Afficher bibliothèque</a>
      </header>
+
      <main class="container-fluid my-5">
          <form action="" method="post">
                <div class="form-group">
@@ -26,28 +28,37 @@
                     <label for="">Editeur</label>
                     <input type="text" name="editeur" class="form-control">
                </div>
+
                <input type="submit" class="btn btn-success mt-3">
+
          </form>
      </main>
      
 </body>
 </html>
 
-<?php
+<?php 
 include "Livre.php";
 
 if( !empty($_POST['titre']) ){
-     $pdo = new PDO("mysql:host=localhost;dbname=rh_bibliotheque","root","");
 
-     $livre = new Livres($_POST['titre'], $_POST['auteur'], $_POST['editeur']);
-     
+     $pdo = new PDO(
+          "mysql:host=localhost;dbname=rh_bibliotheque","root", ""
+     );
+
+     $livre = new Livre($_POST['titre'], $_POST['auteur'], $_POST['editeur']);
+
      $query = "INSERT INTO livre VALUES(?, ?, ?)";
+    
 
      $stmt = $pdo->prepare($query);
+    
+     $stmt->execute([
+          $livre->getTitre(), 
+          $livre->getAuteur(), 
+          $livre->getEditeur()]);
 
-     $stmt->execute([$livre->getTitre(), 
-                     $livre->getAuteur(), 
-                     $livre->getEditeur()]);
-    header("location: index.php");
-    exit;
+     header("location: index.php");
+     exit;
+        
 }
