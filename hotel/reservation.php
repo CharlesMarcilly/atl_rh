@@ -1,1 +1,0 @@
-<?php include 'component/header.html.php'; ?> 
